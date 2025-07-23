@@ -2,15 +2,15 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, connectAuthEmulator } from 'firebase/auth';
 import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
 
-// TODO: Replace with your Firebase project configuration
-// Get this from: Firebase Console > Project Settings > General > Your apps > Web app
+// Firebase project configuration (queue-radar)
+// measurementId isn’t needed for the mobile app
 const firebaseConfig = {
-  apiKey: 'demo-api-key',
-  authDomain: 'queue-radar-demo.firebaseapp.com',
-  projectId: 'queue-radar-demo',
-  storageBucket: 'queue-radar-demo.appspot.com',
-  messagingSenderId: '123456789012',
-  appId: '1:123456789012:web:abcdef123456789012345678',
+  apiKey: 'AIzaSyAG3gKIl9hnvFIBB-TOqhXrl5_l90xu9Co',
+  authDomain: 'queue-radar.firebaseapp.com',
+  projectId: 'queue-radar',
+  storageBucket: 'queue-radar.firebasestorage.app', // verify in Firebase Console
+  messagingSenderId: '662611543773',
+  appId: '1:662611543773:web:4b5d838828de81cee17d34',
 };
 
 const app = initializeApp(firebaseConfig);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Button, StyleSheet, Alert } from 'react-native';
-import { doc, updateDoc, getDoc, onSnapshot } from 'firebase/firestore';
+import { doc, updateDoc, getDoc, onSnapshot, setDoc } from 'firebase/firestore';
 import { db } from '../services/firebase';
 import { seedDemoData, DEMO_SALON_ID } from '../services/demoData';
 
@@ -36,10 +36,11 @@ export default function BarberDashboard() {
     
     try {
       const salonRef = doc(db, 'salons', salonId);
-      await updateDoc(salonRef, { 
-        queue: Math.max(value, 0), 
-        lastUpdated: Date.now() 
-      });
+      await setDoc(
+        salonRef,
+        { queue: Math.max(value, 0), lastUpdated: Date.now() },
+        { merge: true }                       // creates if missing, merges if exists
+      );
     } catch (error) {
       console.error('Error updating queue:', error);
       Alert.alert('Error', 'Failed to update queue. Please try again.');
