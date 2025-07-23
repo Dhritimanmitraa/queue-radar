@@ -10,11 +10,13 @@ export interface SalonData {
   address?: string;
   phone?: string;
   hours?: string;
+  id?: string; // Added for predictable ID
 }
 
 // Demo salon data for different cities
 export const demoSalons: SalonData[] = [
   {
+    id: 'demo-salon-1',           // <── add predictable ID
     name: "Fade Masters",
     location: new GeoPoint(40.7128, -74.0060), // NYC
     queue: 3,
@@ -69,13 +71,18 @@ export const demoSalons: SalonData[] = [
 export async function seedDemoData(): Promise<void> {
   try {
     const salonsCollection = collection(db, 'salons');
-    
+
     for (const salon of demoSalons) {
-      const salonDoc = doc(salonsCollection);
-      await setDoc(salonDoc, salon);
+      // Use the provided id when it exists, fall back to a random one
+      const salonDoc = salon.id
+        ? doc(salonsCollection, salon.id)
+        : doc(salonsCollection);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { id, ...data } = salon;   // Firestore doc ID lives in the path, not the data
+      await setDoc(salonDoc, data);
       console.log(`Added demo salon: ${salon.name}`);
     }
-    
+
     console.log('Demo data seeded successfully!');
   } catch (error) {
     console.error('Error seeding demo data:', error);
