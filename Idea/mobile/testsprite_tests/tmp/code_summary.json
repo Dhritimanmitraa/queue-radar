@@ -1,0 +1,62 @@
+{
+  "tech_stack": [
+    "TypeScript",
+    "React Native",
+    "Expo",
+    "Firebase",
+    "React Navigation",
+    "React Native Maps"
+  ],
+  "features": [
+    {
+      "name": "Role-based Navigation",
+      "description": "Entry point that allows users to choose between customer and barber roles",
+      "files": ["screens/RoleGate.tsx"]
+    },
+    {
+      "name": "Customer Map Interface",
+      "description": "Interactive map showing nearby salons with real-time queue information",
+      "files": ["screens/CustomerHome.tsx", "components/SalonMarker.tsx"]
+    },
+    {
+      "name": "Barber Dashboard",
+      "description": "Real-time queue management interface for barbers to update wait times",
+      "files": ["screens/BarberDashboard.tsx"]
+    },
+    {
+      "name": "Firebase Integration",
+      "description": "Real-time database connection for salon data and queue management",
+      "files": ["services/firebase.ts"]
+    },
+    {
+      "name": "Location Services",
+      "description": "GPS location tracking for customer positioning and salon discovery",
+      "files": ["services/location.ts"]
+    },
+    {
+      "name": "Push Notifications",
+      "description": "Notification system for queue updates and salon alerts",
+      "files": ["services/notifications.ts"]
+    },
+    {
+      "name": "Demo Data Management",
+      "description": "Sample salon data seeding and management for demonstration purposes",
+      "files": ["services/demoData.ts"]
+    },
+    {
+      "name": "Salon Marker Component",
+      "description": "Interactive map markers with queue status, contact info, and navigation",
+      "files": ["components/SalonMarker.tsx"]
+    },
+    {
+      "name": "Authentication System",
+      "description": "User authentication and role-based access control",
+      "files": ["screens/AuthLogin.tsx"]
+    },
+    {
+      "name": "Salon List View",
+      "description": "List view of available salons with queue information",
+      "files": ["screens/SalonList.tsx"]
+    }
+  ]
+} 
