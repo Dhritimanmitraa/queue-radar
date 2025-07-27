@@ -1,0 +1,15 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:8081",
+  "executionArgs": {
+    "projectName": "queue-radar",
+    "projectPath": "C:\\Users\\dhrit\\Desktop\\Idea\\Idea\\mobile",
+    "testIds": [],
+    "additionalInstruction": "Test the React Native/Expo mobile app Queue Radar which is a salon queue management app with customer and barber interfaces. Focus on testing the role selection, map functionality, real-time queue updates, and Firebase integration.",
+    "envs": {
+      "API_KEY": ""
+    }
+  }
+}
