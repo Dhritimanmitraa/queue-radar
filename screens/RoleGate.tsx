@@ -1,18 +1,10 @@
 import React from 'react';
-import { View, Button, StyleSheet, Text, Image } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { View, Button, StyleSheet, Text } from 'react-native';
+import { useNavigate } from 'react-router-dom';
 
-export type RootStackParamList = {
-  RoleGate: undefined;
-  CustomerHome: undefined;
-  BarberDashboard: undefined;
-};
+export default function RoleGate() {
+  const navigate = useNavigate();
 
-type Props = {
-  navigation: StackNavigationProp<RootStackParamList, 'RoleGate'>;
-};
-
-export default function RoleGate({ navigation }: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -22,9 +14,9 @@ export default function RoleGate({ navigation }: Props) {
 
       <View style={styles.buttonContainer}>
         <View style={styles.buttonWrapper}>
-          <Button 
-            title="I'm a Customer" 
-            onPress={() => navigation.replace('CustomerHome')}
+          <Button
+            title="I'm a Customer"
+            onPress={() => navigate('/customer')}
             color="#007AFF"
           />
           <Text style={styles.buttonDescription}>
@@ -33,9 +25,9 @@ export default function RoleGate({ navigation }: Props) {
         </View>
 
         <View style={styles.buttonWrapper}>
-          <Button 
-            title="I'm a Barber" 
-            onPress={() => navigation.replace('BarberDashboard')}
+          <Button
+            title="I'm a Barber"
+            onPress={() => navigate('/barber')}
             color="#34C759"
           />
           <Text style={styles.buttonDescription}>
