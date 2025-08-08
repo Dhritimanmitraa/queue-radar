@@ -115,3 +115,13 @@ If no `EXPO_PUBLIC_GOOGLE_MAPS_API_KEY` is set, the app will automatically:
 - On web, display a friendly message prompting to add a Google Maps key
 
 This lets you test “nearby salons” without a Google key. For full web mapping tiles and Google Places details (ratings/open-now), provide the Google key.
+
+## 💈 Barber Dashboard
+
+The barber-facing dashboard has been redesigned for speed and clarity:
+- Open/Closed toggle with a clear status badge
+- Large queue counter with estimated wait (minutes per customer × people waiting)
+- Quick actions for common updates: -1, +1, +2, +5, and Clear
+- Manual set input and adjustable minutes-per-customer
+
+All updates sync in real time to Firestore. New fields include `isOpen`, `avgMinutesPerCustomer`, and `lastUpdated`.
