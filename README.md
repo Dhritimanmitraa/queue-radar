@@ -68,10 +68,13 @@ Before you begin, ensure you have:
 ```
 queue-radar/
 ├── components/           # Reusable UI components
-│   └── SalonMarker.tsx  # Map marker component
+│   ├── SalonMarker.native.tsx  # Firestore salon marker (native)
+│   ├── SalonMarker.web.tsx     # Placeholder (web)
+│   └── PlaceMarker.native.tsx  # Google Places salon marker (native)
 ├── screens/             # App screens
 │   ├── AuthLogin.tsx    # Login screen
-│   ├── CustomerHome.tsx # Customer dashboard
+│   ├── CustomerHome.native.tsx # Customer dashboard (native, with map)
+│   ├── CustomerHome.web.tsx    # Customer dashboard (web, Google Map)
 │   ├── BarberDashboard.tsx # Barber interface
 │   ├── RoleGate.tsx     # Role selection
 │   └── SalonList.tsx    # Salon listing
@@ -79,8 +82,36 @@ queue-radar/
 │   ├── firebase.ts      # Firebase configuration
 │   ├── location.ts      # Location services
 │   ├── notifications.ts # Push notifications
-│   └── demoData.ts      # Sample data
-├── App.tsx              # Root component
+│   ├── demoData.ts      # Sample data
+│   └── places.ts        # Google Places nearby search
+├── App.native.tsx / App.web.tsx  # Root component
 ├── package.json         # Dependencies
 └── tsconfig.json        # TypeScript config
 ``` 
+
+## 🌐 Google Maps / Places API Setup
+
+1) Enable APIs in Google Cloud: Places API and Maps JavaScript API (web). Optionally enable Maps SDK for Android/iOS if you plan to use native Google Maps tiles.
+
+2) Set a public environment variable so both web and native fetch can access Google Places:
+
+Windows (PowerShell/CMD):
+```
+set EXPO_PUBLIC_GOOGLE_MAPS_API_KEY=YOUR_API_KEY
+```
+
+macOS/Linux:
+```
+export EXPO_PUBLIC_GOOGLE_MAPS_API_KEY=YOUR_API_KEY
+```
+
+3) Start the app after setting the key: `npm start`
+
+## 🗺️ OpenStreetMap (OSM) Fallback
+
+If no `EXPO_PUBLIC_GOOGLE_MAPS_API_KEY` is set, the app will automatically:
+- Fetch nearby salons with Overpass (OSM) via `services/osm.ts`
+- Show native markers in the mobile app using the fetched OSM results
+- On web, display a friendly message prompting to add a Google Maps key
+
+This lets you test “nearby salons” without a Google key. For full web mapping tiles and Google Places details (ratings/open-now), provide the Google key.
