@@ -6,8 +6,8 @@ import * as Notifications from 'expo-notifications';
 
 import './services/firebase';
 
-import RoleGate from './screens/RoleGate';
-import CustomerHome from './screens/CustomerHome';
+import RoleGate from './screens/RoleGate.native';
+import CustomerHome from './screens/CustomerHome.native';
 import BarberDashboard from './screens/BarberDashboard';
 
 const Stack = createNativeStackNavigator();
@@ -28,4 +28,4 @@ export default function App() {
       </NavigationContainer>
     </SafeAreaProvider>
   );
-} 
+}         
