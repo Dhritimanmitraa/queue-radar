@@ -1,9 +1,26 @@
-// Firebase project configuration (queue-radar)
+// Firebase project configuration (loaded from environment variables)
+// Note: Use EXPO_PUBLIC_* so both native and web builds can access values
+const env = process.env as Record<string, string | undefined>;
+
 export const firebaseConfig = {
-  apiKey: 'REDACTED',
-  authDomain: 'queue-radar.firebaseapp.com',
-  projectId: 'queue-radar',
-  storageBucket: 'queue-radar.firebasestorage.app',
-  messagingSenderId: '662611543773',
-  appId: '1:662611543773:web:4b5d838828de81cee17d34',
+  apiKey: env.EXPO_PUBLIC_FIREBASE_API_KEY || '',
+  authDomain: env.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN || '',
+  projectId: env.EXPO_PUBLIC_FIREBASE_PROJECT_ID || '',
+  storageBucket: env.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET || '',
+  messagingSenderId: env.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || '',
+  appId: env.EXPO_PUBLIC_FIREBASE_APP_ID || '',
 };
+
+// Optional runtime validation in dev to catch misconfiguration early
+if (__DEV__) {
+  const missing = Object.entries(firebaseConfig)
+    .filter(([, v]) => !v)
+    .map(([k]) => k);
+  if (missing.length > 0) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      `Missing Firebase config env vars for: ${missing.join(', ')}. ` +
+        'Set EXPO_PUBLIC_FIREBASE_* environment variables to initialize Firebase.'
+    );
+  }
+}
