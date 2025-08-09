@@ -1,1 +1,14 @@
 node_modules
+android/app/debug.keystore
+.env*
+*.env
+*.keystore
+*.jks
+*.pem
+*.p12
+*.crt
+*.der
+**/.expo/**
+dist
+build
+*.log
