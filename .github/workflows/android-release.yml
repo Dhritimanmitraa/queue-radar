@@ -113,28 +113,28 @@ jobs:
         run: |
           echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
 
-      - name: Build debug APK (no signing)
+      - name: Build release APK (fallback signing if no keystore)
         working-directory: android
         run: |
           chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon --stacktrace
+          ./gradlew assembleRelease --no-daemon --stacktrace
 
-      - name: Upload debug APK artifact
+      - name: Upload release APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug-apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          name: app-release-apk
+          path: android/app/build/outputs/apk/release/app-release.apk
 
-      - name: Publish debug APK as GitHub pre-release
+      - name: Publish release APK as GitHub pre-release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: debug-latest
-          name: Debug build (latest on master)
+          tag_name: release-latest
+          name: Release build (latest on master)
           draft: false
           prerelease: true
           generate_release_notes: false
           files: |
-            android/app/build/outputs/apk/debug/app-debug.apk
+            android/app/build/outputs/apk/release/app-release.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
