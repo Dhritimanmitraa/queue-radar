@@ -82,6 +82,29 @@ cd android
 ./gradlew assembleRelease
 ```
 
+### 🔁 GitHub Actions Release (APK attached to GitHub Release)
+
+This repo includes a workflow to build and upload an APK to a GitHub Release.
+
+1. In your repository settings, add the secret:
+   - ANDROID_KEYSTORE_BASE64: Base64 of your `android/app/queue-radar-release.keystore`
+
+   Generate the secret value locally:
+   ```bash
+   base64 -w 0 android/app/queue-radar-release.keystore > keystore.b64
+   # copy contents of keystore.b64 into the secret
+   ```
+
+2. Trigger the workflow:
+   - Actions tab → "Android Release APK" → Run workflow → provide `version_tag` (e.g., `v1.0.0`)
+   - Or push a tag starting with `v`:
+   ```bash
+   git tag v1.0.0
+   git push origin v1.0.0
+   ```
+
+The APK will be attached to the GitHub Release as `app-release.apk`.
+
 ## 📁 Project Structure
 
 ```
