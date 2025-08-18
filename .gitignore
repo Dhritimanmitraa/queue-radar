@@ -1,4 +1,38 @@
-﻿node_modules
+﻿# Node / Expo
+node_modules/
+.expo/
+.expo-shared/
+npm-debug.log*
+yarn-error.log*
+
+# Editor/OS
+.DS_Store
+.idea/
+.vscode/
+*.iml
+
+# Environment
+.env
+.env.*
+
+# Android build
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+
+# Keystores (DO NOT COMMIT)
+android/app/*.keystore
+android/app/*.jks
+
+# Gradle caches
+**/.gradle/
+
+# Expo/EAS artifacts
+dist/
+web-build/
+
+node_modules
 .expo/
 .expo-shared/
 *.log
