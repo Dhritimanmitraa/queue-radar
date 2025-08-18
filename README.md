@@ -63,6 +63,25 @@ Before you begin, ensure you have:
    - Install [Expo Go](https://expo.dev/client) on your mobile device
    - Scan the QR code from the terminal
 
+## 📦 Building Android APK
+
+You can generate a signed release APK via cloud builds without installing Android Studio. See detailed steps in `BUILD_INSTRUCTIONS.md`.
+
+Quick start with Expo EAS:
+
+```bash
+eas login
+eas build:configure
+eas build --platform android --profile production
+```
+
+Alternatively, for a local build (requires Android SDK), run:
+
+```bash
+cd android
+./gradlew assembleRelease
+```
+
 ## 📁 Project Structure
 
 ```

@@ -1,5 +1,40 @@
 {
-  "android": {
-    "package": "com.anonymous.queueradar"
+  "expo": {
+    "name": "Queue Radar",
+    "slug": "queue-radar",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp",
+    "splash": {
+      "image": "./android/app/src/main/res/drawable-xxxhdpi/splashscreen_logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.queueradar"
+    },
+    "android": {
+      "package": "com.anonymous.queueradar",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "your-project-id"
+      }
+    }
   }
 }
