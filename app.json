@@ -4,7 +4,7 @@
     "slug": "queue-radar",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp",
+    "icon": "./android/app/src/main/res/drawable-xxxhdpi/splashscreen_logo.png",
     "splash": {
       "image": "./android/app/src/main/res/drawable-xxxhdpi/splashscreen_logo.png",
       "resizeMode": "contain",
@@ -24,7 +24,7 @@
       "package": "com.anonymous.queueradar",
       "versionCode": 1,
       "adaptiveIcon": {
-        "foregroundImage": "./android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp",
+        "foregroundImage": "./android/app/src/main/res/drawable-xxxhdpi/splashscreen_logo.png",
         "backgroundColor": "#FFFFFF"
       }
     },
