@@ -1,23 +1,37 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import AuthLogin from './screens/AuthLogin';
-import CustomerHome from './screens/CustomerHome';
+import React, { useEffect, useState } from 'react';
+import CustomerHome from './screens/CustomerHome.web';
 import BarberDashboard from './screens/BarberDashboard';
 import RoleGate from './screens/RoleGate';
-import SalonList from './screens/SalonList';
 
+// Simple hash-based routing without react-router-dom
 const App = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<RoleGate />} />
-        <Route path="/login" element={<AuthLogin />} />
-        <Route path="/customer" element={<CustomerHome />} />
-        <Route path="/barber" element={<BarberDashboard />} />
-        <Route path="/salons" element={<SalonList />} />
-      </Routes>
-    </Router>
-  );
+  const [currentView, setCurrentView] = useState('');
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentView(window.location.hash.slice(1));
+    };
+
+    // Set initial view
+    handleHashChange();
+    
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
+  // Render components based on hash
+  switch (currentView) {
+    case '/customer':
+      return <CustomerHome />;
+    case '/barber':
+      return <BarberDashboard />;
+    default:
+      return <RoleGate />;
+  }
 };
 
 export default App;

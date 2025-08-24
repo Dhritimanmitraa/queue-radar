@@ -200,10 +200,6 @@ export default function CustomerHome() {
           console.log('📍 Map ready');
           setShowFallback(false);
         }}
-        onError={(error) => {
-          console.error('❌ Map error:', error);
-          setShowFallback(true);
-        }}
       >
         <Circle
           center={{ latitude: region.latitude, longitude: region.longitude }}
