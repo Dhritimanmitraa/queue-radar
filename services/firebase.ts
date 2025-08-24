@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import {
   initializeAuth,
-  getReactNativePersistence,
+  getAuth,
 } from 'firebase/auth';
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 import { getFirestore } from 'firebase/firestore';
@@ -14,15 +14,20 @@ console.log('✅ Firebase app initialized');
 console.log('🔐 Initializing Firebase auth...');
 let auth;
 try {
-  auth = initializeAuth(app, {
-    persistence: getReactNativePersistence(ReactNativeAsyncStorage),
-  });
+  // Try to initialize auth with React Native persistence if available
+  try {
+    const { getReactNativePersistence } = require('firebase/auth/react-native');
+    auth = initializeAuth(app, {
+      persistence: getReactNativePersistence(ReactNativeAsyncStorage),
+    });
+  } catch {
+    // Fallback for web or if React Native persistence is not available
+    auth = initializeAuth(app);
+  }
   console.log('✅ Firebase auth initialized');
 } catch (error: any) {
   if (error.code === 'auth/already-initialized') {
     console.log('ℹ️ Firebase auth already initialized, using existing instance');
-    // Get the existing auth instance
-    const { getAuth } = require('firebase/auth');
     auth = getAuth(app);
   } else {
     console.error('❌ Firebase auth initialization error:', error);
