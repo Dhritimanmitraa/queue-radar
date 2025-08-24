@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import * as Notifications from 'expo-notifications';
+import Constants from 'expo-constants';
 
 import './services/firebase';
 
@@ -14,7 +14,14 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   useEffect(() => {
-    Notifications.requestPermissionsAsync();
+    // Avoid Expo Go push-notifications error on SDK 53+
+    // Only request permissions when not running inside Expo Go
+    if (Constants.appOwnership !== 'expo') {
+      // Dynamic import to prevent module side-effects in Expo Go
+      import('expo-notifications').then((Notifications) => {
+        Notifications.requestPermissionsAsync();
+      }).catch(() => {});
+    }
   }, []);
 
   return (

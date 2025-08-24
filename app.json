@@ -18,7 +18,11 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.queueradar"
+      "bundleIdentifier": "com.anonymous.queueradar",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app needs access to your location to show nearby salons and barber shops.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "This app needs access to your location to show nearby salons and barber shops."
+      }
     },
     "android": {
       "package": "com.anonymous.queueradar",
@@ -26,6 +30,15 @@
       "adaptiveIcon": {
         "foregroundImage": "./android/app/src/main/res/drawable-xxxhdpi/splashscreen_logo.png",
         "backgroundColor": "#FFFFFF"
+      },
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "YOUR_GOOGLE_MAPS_API_KEY"
+        }
       }
     },
     "web": {
@@ -33,7 +46,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "your-project-id"
+        "projectId": "e2d8d70e-fa44-47fd-a704-cfcadb590f67"
       }
     }
   }
