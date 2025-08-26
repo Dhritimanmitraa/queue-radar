@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { View, ActivityIndicator, StyleSheet, Text } from 'react-native';
-import MapView, { PROVIDER_GOOGLE, Circle } from 'react-native-maps';
+import { View, ActivityIndicator, StyleSheet, Text, Platform } from 'react-native';
+import MapView, { Circle } from 'react-native-maps';
 import { collection, onSnapshot, query } from 'firebase/firestore';
 import { db } from '../services/firebase';
 import { getBestEffortPositionAsync } from '../services/location';
@@ -16,6 +16,7 @@ export default function CustomerHome() {
   const [isLoading, setIsLoading] = useState(true);
   const [showFallback, setShowFallback] = useState(false);
   const searchRadiusMeters = 4000;
+  const enableMap = Platform.OS !== 'android' || !!process.env.EXPO_PUBLIC_GOOGLE_MAPS_API_KEY;
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -177,47 +178,48 @@ export default function CustomerHome() {
 
   return (
     <>
-      <MapView
-        style={StyleSheet.absoluteFill}
-        region={region}
-        provider={PROVIDER_GOOGLE}
-        showsUserLocation
-        showsMyLocationButton={true}
-        showsPointsOfInterest={true}
-        showsCompass={true}
-        showsScale={true}
-        showsBuildings={true}
-        showsTraffic={false}
-        showsIndoors={true}
-        loadingEnabled={true}
-        mapType="standard"
-        toolbarEnabled={true}
-        zoomEnabled={true}
-        scrollEnabled={true}
-        pitchEnabled={true}
-        rotateEnabled={true}
-        onMapReady={() => {
-          console.log('📍 Map ready');
-          setShowFallback(false);
-        }}
-      >
-        <Circle
-          center={{ latitude: region.latitude, longitude: region.longitude }}
-          radius={searchRadiusMeters}
-          strokeColor="rgba(10,132,255,0.6)"
-          fillColor="rgba(10,132,255,0.1)"
-        />
-        {filteredSalons.map((salon) => (
-          <SalonMarker key={salon.id} salon={salon} />
-        ))}
-        {nearbyPlaces.map((p) => (
-          <PlaceMarker key={p.place_id} place={p} />
-        ))}
-      </MapView>
-      
-      {showFallback ? renderFallbackView() : null}
-      
-      {error && !showFallback ? (
+      {enableMap ? (
+        <MapView
+          style={StyleSheet.absoluteFill}
+          region={region}
+          showsUserLocation
+          showsMyLocationButton={true}
+          showsPointsOfInterest={true}
+          showsCompass={true}
+          showsScale={true}
+          showsBuildings={true}
+          showsTraffic={false}
+          showsIndoors={true}
+          loadingEnabled={true}
+          mapType="standard"
+          toolbarEnabled={true}
+          zoomEnabled={true}
+          scrollEnabled={true}
+          pitchEnabled={true}
+          rotateEnabled={true}
+          onMapReady={() => {
+            console.log('📍 Map ready');
+            setShowFallback(false);
+          }}
+        >
+          <Circle
+            center={{ latitude: region.latitude, longitude: region.longitude }}
+            radius={searchRadiusMeters}
+            strokeColor="rgba(10,132,255,0.6)"
+            fillColor="rgba(10,132,255,0.1)"
+          />
+          {filteredSalons.map((salon) => (
+            <SalonMarker key={salon.id} salon={salon} />
+          ))}
+          {nearbyPlaces.map((p) => (
+            <PlaceMarker key={p.place_id} place={p} />
+          ))}
+        </MapView>
+      ) : null}
+
+      {showFallback || !enableMap ? renderFallbackView() : null}
+
+      {error && !showFallback && enableMap ? (
         <View style={styles.errorBox}>
           <Text style={styles.errorText}>{error}</Text>
         </View>

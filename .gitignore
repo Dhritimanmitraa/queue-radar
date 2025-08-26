@@ -1,4 +1,25 @@
-﻿# Node / Expo
+﻿# Env files
+.env
+.env.*
+*.env
+!.env.example
+
+# Expo caches
+.expo/
+.expo-shared/
+
+# Android keystores and properties
+android/app/*.keystore
+android/app/*.jks
+keystore.properties
+
+# Build artifacts
+android/app/build/
+ios/build/
+dist/
+build/
+node_modules/
+# Node / Expo
 node_modules/
 .expo/
 .expo-shared/

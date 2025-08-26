@@ -9,7 +9,7 @@ This guide addresses the **Google API Key security leak** detected by GitHub and
 ### 1. **Revoke the Exposed API Key**
 - Go to [Google Cloud Console](https://console.cloud.google.com/)
 - Navigate to **APIs & Services** → **Credentials**
-- Find the API key: `AIzaSyAG3gKIl9hnvFIBB-TOqhXrl5_l90xu9Co`
+- Find the API key: `<REDACTED>`
 - **DELETE** or **REVOKE** this key immediately
 
 ### 2. **Generate a New API Key**
@@ -18,8 +18,8 @@ This guide addresses the **Google API Key security leak** detected by GitHub and
 - Copy the new API key securely
 
 ### 3. **Update Environment Variables**
-- Open the `.env` file in your project root
-- Replace `your_new_firebase_api_key_here` with your new API key
+- Create a `.env` file in your project root (copy from `.env.example`)
+- Fill in your new API key and related values
 - **NEVER commit the `.env` file to version control**
 
 ```bash
