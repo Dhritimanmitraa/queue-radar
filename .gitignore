@@ -71,3 +71,7 @@ android/app/debug.keystore
 **/.expo/**
 dist
 build
+.env
+.env.*
+*.env
+node_modules/

@@ -8,9 +8,11 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "build:android": "cd android && gradlew assembleRelease",
-    "build:android:apk": "cd android && gradlew assembleRelease && echo APK built successfully!"
+    "build:android:apk": "cd android && gradlew assembleRelease && echo APK built successfully!",
+    "strip:comments": "node scripts/strip-comments.js"
   },
   "dependencies": {
+    "@expo/metro-runtime": "~5.0.4",
     "@firebase/auth-compat": "^0.6.0",
     "@react-native-async-storage/async-storage": "2.1.2",
     "@react-navigation/native": "^6.1.6",
@@ -28,7 +30,10 @@
     "react-native-web": "^0.20.0"
   },
   "devDependencies": {
+    "@babel/generator": "^7.28.3",
+    "@babel/parser": "^7.28.4",
     "@types/react": "~19.0.10",
+    "fast-glob": "^3.3.3",
     "typescript": "~5.8.3"
   }
 }

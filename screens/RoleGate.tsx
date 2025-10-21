@@ -1,13 +1,9 @@
 import React from 'react';
-
-// Simple web navigation without react-router-dom
 const navigate = (path: string) => {
   window.location.hash = path;
 };
-
 export default function RoleGate() {
-  return (
-    <div style={styles.container}>
+  return <div style={styles.container}>
       <div style={styles.header}>
         <h1 style={styles.title}>Queue Radar</h1>
         <p style={styles.subtitle}>Skip the wait, find your cut</p>
@@ -15,10 +11,7 @@ export default function RoleGate() {
 
       <div style={styles.buttonContainer}>
         <div style={styles.buttonWrapper}>
-          <button
-            style={styles.customerButton}
-            onClick={() => navigate('/customer')}
-          >
+          <button style={styles.customerButton} onClick={() => navigate('/customer')}>
             I'm a Customer
           </button>
           <p style={styles.buttonDescription}>
@@ -27,10 +20,7 @@ export default function RoleGate() {
         </div>
 
         <div style={styles.buttonWrapper}>
-          <button
-            style={styles.barberButton}
-            onClick={() => navigate('/barber')}
-          >
+          <button style={styles.barberButton} onClick={() => navigate('/barber')}>
             I'm a Barber
           </button>
           <p style={styles.buttonDescription}>
@@ -47,15 +37,13 @@ export default function RoleGate() {
           📱 <strong>Best Experience:</strong> Download the native Android APK for full functionality!
         </p>
       </div>
-    </div>
-  );
+    </div>;
 }
-
 const styles = {
-  container: { 
+  container: {
     display: 'flex',
     flexDirection: 'column' as 'column',
-    justifyContent: 'center', 
+    justifyContent: 'center',
     alignItems: 'center',
     padding: '40px',
     backgroundColor: '#f8f9fa',
@@ -64,7 +52,7 @@ const styles = {
   },
   header: {
     textAlign: 'center' as 'center',
-    marginBottom: '60px',
+    marginBottom: '60px'
   },
   title: {
     fontSize: '48px',
@@ -87,7 +75,7 @@ const styles = {
     maxWidth: '400px'
   },
   buttonWrapper: {
-    textAlign: 'center' as 'center',
+    textAlign: 'center' as 'center'
   },
   customerButton: {
     backgroundColor: '#007AFF',
@@ -128,5 +116,5 @@ const styles = {
     color: '#999',
     textAlign: 'center' as 'center',
     margin: '5px 0'
-  },
-}; 
+  }
+};
